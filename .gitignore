@@ -1,1 +1,4 @@
-/target
+contrib/aur/pkg/
+contrib/aur/src/
+contrib/aur/*.tar.gz
+target/
