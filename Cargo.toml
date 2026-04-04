@@ -1,6 +1,6 @@
 [package]
 name = "charvision"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "TUI dashboard + terminal ASCII camera viewer (Charvision / charviews)"
 license = "MIT OR Apache-2.0"
@@ -19,3 +19,7 @@ crossterm = "0.28"
 ratatui = "0.29"
 nokhwa = { version = "0.10", features = ["input-native"] }
 anyhow = "1.0"
+
+# 👇 FIXED IMAGE/JPEG STACK
+image = { version = "0.25", default-features = false, features = ["jpeg"] }
+mozjpeg = { version = "0.10", features = ["vendored"] }
