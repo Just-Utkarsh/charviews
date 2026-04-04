@@ -1,28 +1,33 @@
-
 _upstream='https://github.com/Just-Utkarsh/charviews'
 
 pkgname=charviews
-pkgver=0.1.0
+pkgver=0.1.2
 pkgrel=1
-pkgdesc='TUI dashboard and terminal ASCII webcam viewer (Charviews)'
+pkgdesc='TUI dashboard and terminal ASCII webcam viewer'
 arch=('x86_64' 'aarch64')
 url="${_upstream}"
 license=('MIT')
-depends=('gcc-libs')
+
+depends=('gcc-libs' 'ffmpeg' 'libjpeg-turbo')
 makedepends=('cargo')
 optdepends=('v4l-utils: list V4L devices with v4l2-ctl')
+
 source=("${pkgname}-${pkgver}.tar.gz::${_upstream}/archive/refs/tags/v${pkgver}.tar.gz")
-sha256sums=('0000000000000000000000000000000000000000000000000000000000000000')
+sha256sums=('eef72f538e6a029a19781e8ee1487c19272a5055335a836320dc4511472b0332')
 
 build() {
   cd "charviews-${pkgver}"
-  export RUSTUP_TOOLCHAIN=stable
-  cargo build --frozen --release --all-features
-}
 
+  export RUSTUP_TOOLCHAIN=stable
+
+  # 👇 FORCE linker to include libjpeg
+  export RUSTFLAGS="-C link-arg=-ljpeg"
+
+  cargo build --release --all-features
+}
 package() {
-  cd "charviews-${pkgver}"
+  cd "${pkgname}-${pkgver}"
   install -Dm755 target/release/charviews "${pkgdir}/usr/bin/charviews"
-  install -Dm644 LICENSE-MIT "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE-MIT"
+  install -Dm644 LICENSE-MIT "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
   install -Dm644 README.md "${pkgdir}/usr/share/doc/${pkgname}/README.md"
 }
