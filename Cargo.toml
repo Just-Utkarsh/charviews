@@ -22,4 +22,3 @@ anyhow = "1.0"
 
 # 👇 FIXED IMAGE/JPEG STACK
 image = { version = "0.25", default-features = false, features = ["jpeg"] }
-mozjpeg = { version = "0.10", features = ["vendored"] }
