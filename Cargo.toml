@@ -1,11 +1,11 @@
 [package]
 name = "charvision"
-version = "0.1.1"
+version = "0.2.0"
 edition = "2021"
-description = "TUI dashboard + terminal ASCII camera viewer (Charvision / charviews)"
-license = "MIT"
+description = "CLI: live webcam as ASCII art in your terminal (charviews)"
+license = "MIT OR Apache-2.0"
 readme = "README.md"
-keywords = ["tui", "webcam", "ascii", "v4l2", "camera"]
+keywords = ["cli", "webcam", "ascii", "v4l2", "camera"]
 categories = ["command-line-utilities", "multimedia"]
 autobins = false
 
@@ -16,9 +16,5 @@ path = "src/main.rs"
 [dependencies]
 clap = { version = "4.5", features = ["derive"] }
 crossterm = "0.28"
-ratatui = "0.29"
 nokhwa = { version = "0.10", features = ["input-native"] }
 anyhow = "1.0"
-
-# 👇 FIXED IMAGE/JPEG STACK
-image = { version = "0.25", default-features = false, features = ["jpeg"] }
